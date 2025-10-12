@@ -1,0 +1,15 @@
+2025-10-11 07:00:12,450 DEBUG    root            Loaded Command Group: ['gcloud', 'config']
+2025-10-11 07:00:12,878 DEBUG    root            Loaded Command Group: ['gcloud', 'config', 'set']
+2025-10-11 07:00:12,881 DEBUG    root            Running [gcloud.config.set] with arguments: [SECTION/PROPERTY: "compute/region", VALUE: "us-central1"]
+2025-10-11 07:00:13,087 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/389488056915-compute@developer.gserviceaccount.com/?recursive=true
+2025-10-11 07:00:13,108 DEBUG    urllib3.connectionpool Starting new HTTP connection (1): metadata.google.internal:80
+2025-10-11 07:00:13,110 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/389488056915-compute@developer.gserviceaccount.com/?recursive=true HTTP/11" 200 155
+2025-10-11 07:00:13,123 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/389488056915-compute@developer.gserviceaccount.com/token
+2025-10-11 07:00:13,126 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/389488056915-compute@developer.gserviceaccount.com/token HTTP/11" 200 871
+2025-10-11 07:00:13,428 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): compute.googleapis.com:443
+2025-10-11 07:00:13,621 DEBUG    urllib3.connectionpool https://compute.googleapis.com:443 "GET /compute/v1/projects/nifty-harmony-474217-q6/regions/us-central1?alt=json HTTP/11" 200 None
+2025-10-11 07:00:13,631 INFO     ___FILE_ONLY___ Updated property [compute/region].
+
+2025-10-11 07:00:13,633 DEBUG    root            Chosen display Format:default
+2025-10-11 07:00:13,634 INFO     root            Display format: "default"
+2025-10-11 07:00:13,643 DEBUG    root            SDK update checks are disabled.
