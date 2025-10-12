@@ -1,8 +1,0 @@
-2025-10-11 10:06:39,476 DEBUG    root            Loaded Command Group: ['gcloud', 'config']
-2025-10-11 10:06:39,644 DEBUG    root            Loaded Command Group: ['gcloud', 'config', 'get_value']
-2025-10-11 10:06:39,647 DEBUG    root            Running [gcloud.config.get-value] with arguments: [SECTION/PROPERTY: "project"]
-2025-10-11 10:06:39,661 DEBUG    root            Chosen display Format:value(.)
-2025-10-11 10:06:39,662 INFO     root            Display format: "value(.)"
-2025-10-11 10:06:39,663 INFO     ___FILE_ONLY___ nifty-harmony-474217-q6
-
-2025-10-11 10:06:39,701 DEBUG    root            SDK update checks are disabled.
