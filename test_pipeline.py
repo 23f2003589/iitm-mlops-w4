@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import joblib
 from pathlib import Path
-
+#hello
 BUCKET_URI = "gs://mlops-course-nifty-harmony-474217-q6-unique"
 TRAINING_DATA_BUCKET_NAME = "training_data_mlops_w1"
 TRAINING_BLOB = "iris.csv"
