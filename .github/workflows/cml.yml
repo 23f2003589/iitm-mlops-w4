@@ -39,7 +39,7 @@ jobs:
         run: pytest test_pipeline.py --maxfail=1 --disable-warnings -v --junitxml=report.xml
         
       - name: Post PR comment via CML
-        run: cml send-comment report.xml
+        run: cml comment create --junit report.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
