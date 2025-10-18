@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install pandas numpy joblib scikit-learn pytest gcsfs "dvc[gs]"
+          pip install pandas numpy joblib scikit-learn pytest gcsfs "dvc[gs]" cml
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v3
@@ -35,4 +35,7 @@ jobs:
         run: dvc pull
 
       - name: Run pytest
-        run: pytest test_pipeline.py --maxfail=1 --disable-warnings -v
+        run: pytest test_pipeline.py --maxfail=1 --disable-warnings -v --junitxml=report.xml
+        
+      - name: Post PR comment via CML
+        run: cml send-comment report.xml
