@@ -38,8 +38,12 @@ jobs:
       - name: Run pytest
         run: pytest test_pipeline.py --maxfail=1 --disable-warnings -v --junitxml=report.xml
         
+      - name: Convert JUnit XML to Markdown
+        run: cml junit-to-markdown report.xml -o report.md
+
       - name: Post PR comment via CML
-        run: cml comment create --junit report.xml
+        run: cml comment create report.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
