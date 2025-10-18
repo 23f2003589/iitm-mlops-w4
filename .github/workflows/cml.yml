@@ -1,0 +1,36 @@
+name: ML Testing Pipeline
+
+on:
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.10
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pandas numpy joblib scikit-learn pytest gcsfs dvc
+
+      - name: Set up GCP credentials
+        run: |
+        echo "${{ secrets.GCP_SERVICE_KEY }}" > /tmp/sa.json
+        export GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa.json
+
+
+      - name: Pull DVC artifacts
+        run: dvc pull
+
+      - name: Run pytest
+        run: pytest test_pipeline.py --maxfail=1 --disable-warnings -v
