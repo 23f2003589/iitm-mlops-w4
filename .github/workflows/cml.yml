@@ -25,8 +25,8 @@ jobs:
 
       - name: Set up GCP credentials
         run: |
-        echo "${{ secrets.GCP_SERVICE_KEY }}" > /tmp/sa.json
-        export GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa.json
+          echo "${{ secrets.GCP_SERVICE_KEY }}" > /tmp/sa.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa.json
 
 
       - name: Pull DVC artifacts
