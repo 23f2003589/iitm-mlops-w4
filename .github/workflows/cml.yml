@@ -17,14 +17,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - name: Setup CML (Continuous Machine Learning)
+        uses: iterative/setup-cml@v2.0.1
         with:
-          python-version: 3.8.12
+          python-version: 3.8
 
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install pandas numpy joblib scikit-learn pytest gcsfs "dvc[gs]" cml
+          pip install pandas numpy joblib scikit-learn pytest gcsfs "dvc[gs]"
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v3
