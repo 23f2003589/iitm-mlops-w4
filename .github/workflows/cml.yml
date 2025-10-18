@@ -35,15 +35,13 @@ jobs:
       - name: Pull DVC artifacts
         run: dvc pull
 
-      - name: Run pytest
-        run: pytest test_pipeline.py --maxfail=1 --disable-warnings -v --junitxml=report.xml
-        
-      - name: Convert JUnit XML to Markdown
-        run: cml junit-to-markdown report.xml -o report.md
+      - name: Run pytest and save output
+        run: pytest test_pipeline.py --maxfail=1 --disable-warnings -v > report.md
 
       - name: Post PR comment via CML
         run: cml comment create report.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 
