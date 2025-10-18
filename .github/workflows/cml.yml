@@ -11,7 +11,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+    container:
+      image: python:3.10-slim
     steps:
       - uses: actions/checkout@v4
         with:
