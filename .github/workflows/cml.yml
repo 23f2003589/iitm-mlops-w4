@@ -11,7 +11,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: /tmp/sa.json
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,10 +28,7 @@ jobs:
           pip install pandas numpy joblib scikit-learn pytest gcsfs "dvc[gs]"
 
       - name: Set up GCP credentials
-        run: |
-          echo "${{ secrets.GCP_SERVICE_KEY }}" > /tmp/sa.json
-          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa.json
-
+        run: echo "${{ secrets.GCP_SERVICE_KEY }}" > /tmp/sa.json
 
       - name: Pull DVC artifacts
         run: dvc pull
