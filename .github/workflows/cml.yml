@@ -1,0 +1,51 @@
+name: ML Testing Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2️⃣ Set up Python
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.10
+
+      # 3️⃣ Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pandas numpy joblib scikit-learn pytest gcsfs dvc
+
+      # 4️⃣ Authenticate with GCP (optional if using service account key)
+      - name: Set up GCP credentials
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SERVICE_KEY }}
+        run: |
+          echo $GOOGLE_APPLICATION_CREDENTIALS > /tmp/sa.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa.json
+
+      # 5️⃣ Pull DVC data/model
+      - name: Pull DVC artifacts
+        run: dvc pull
+
+      # 6️⃣ Run pytest
+      - name: Run tests
+        run: pytest test_pipeline.py --maxfail=1 --disable-warnings -v
+
+      # 7️⃣ Post results to PR using CML
+      - name: Post PR comment
+        uses: iterative/cml@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          text: "✅ ML Testing pipeline completed successfully"
