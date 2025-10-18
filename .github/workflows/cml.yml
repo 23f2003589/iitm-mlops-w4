@@ -40,3 +40,6 @@ jobs:
         
       - name: Post PR comment via CML
         run: cml send-comment report.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
